@@ -3,8 +3,8 @@ import { createTheme } from "@mui/material/styles";
 export const dashboard = createTheme({
   palette: {
     primary: {
-      main: "#FFCE97",
-      dark: "#FCBD75",
+      main: "#483927",
+      dark: "#6D5337",
     },
     secondary: {
       main: "#FFCE97",
