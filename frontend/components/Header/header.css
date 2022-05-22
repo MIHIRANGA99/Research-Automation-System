@@ -1,0 +1,17 @@
+.header{
+    color: #FFCE97;
+    text-align: center;
+}
+
+.header h3{
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+.header h6{
+    font-size: 15px;
+    letter-spacing: 25px;
+    margin-right: -25px;
+    font-weight: 100;
+    margin-top: 0;
+}
