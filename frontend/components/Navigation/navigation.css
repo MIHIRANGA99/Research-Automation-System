@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    padding: 0px 20px;
     height: 100%;
     row-gap: 10px;
 }
