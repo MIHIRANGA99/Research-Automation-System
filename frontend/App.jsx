@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import "./App.css";
 import Header from "./components/Header/Header";
+import ManageUsers from "./pages/ManageUsers/ManageUsers";
 
 function app() {
 
@@ -23,7 +24,7 @@ function app() {
       </div>
       <div className="pages">
         <Routes>
-          <Route path="/components" element={<></>} />
+          <Route path="/manage-users" element={<ManageUsers />} />
         </Routes>
       </div>
     </div>
