@@ -5,6 +5,7 @@ import json from "koa-json";
 import bodyparser from "koa-bodyparser";
 import cors from "koa-cors";
 import Koa from "koa";
+import staffRouter from "./routes/staff.router.js";
 
 const app = new Koa();
 
@@ -13,7 +14,9 @@ const PORT = process.env.PORT || "8090";
 app.use(json());
 app.use(cors());
 app.use(bodyparser());
+
 app.use(studentRouter.routes()).use(studentRouter.allowedMethods());
+app.use(staffRouter.routes()).use(staffRouter.allowedMethods());
 
 app.listen(PORT, () => {
   console.log("Server Started on port : " + PORT);
