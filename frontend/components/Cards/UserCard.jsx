@@ -29,11 +29,11 @@ function UserCard({objID, name, faculty, idNo, role, popup}) {
       faculty: userFaculty
     }
 
-    userUpdateController(objID, newData).then((res) => console.log(res)).catch((e) => console.log(e.message))
+    userUpdateController(objID, newData, role).then((res) => console.log(res)).catch((e) => console.log(e.message))
   }
 
   const deleteUser = () => {
-    userDeleteController(objID).then((res) => console.log(res.data)).catch((e) => console.log(e.message));
+    userDeleteController(objID, role).then((res) => console.log(res.data)).catch((e) => console.log(e.message));
   }
 
   return (
@@ -73,7 +73,6 @@ function UserCard({objID, name, faculty, idNo, role, popup}) {
         </DialogActions>
       </Dialog>
       
-
       <Dialog
         open={deletePop}
         onClose={() => setDeletePop(false)}
