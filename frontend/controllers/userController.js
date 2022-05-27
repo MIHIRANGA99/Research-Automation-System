@@ -1,5 +1,7 @@
 import axios from "axios";
 
-const url = "http://localhost:8090/student";
+const studentUrl = "http://localhost:8090/student";
+const staffUrl = "http://localhost:8090/staff";
 
-export const getUsers = axios.get(url)
+export const getStudents = axios.get(studentUrl)
+export const getStaff = axios.get(staffUrl)
