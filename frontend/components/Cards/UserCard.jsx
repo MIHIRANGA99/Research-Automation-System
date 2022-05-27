@@ -5,12 +5,14 @@ import DelButton from "../Buttons/DelButton";
 import UpdateButton from "../Buttons/UpdateButton";
 import { dialog } from "../../themes/themes";
 import userUpdateController from "../../controllers/userUpdateController";
+import userDeleteController from "../../controllers/userDeleteController";
 
 function UserCard({objID, name, faculty, idNo, role, popup}) {
 
   const styles = {display: 'flex', flex: 1, textAlign: 'center', alignItems: 'center',  justifyContent: 'center', fontSize: '16px'};
 
   const [updatePop, setUpdatePop] = useState(false)
+  const [deletePop, setDeletePop] = useState(false)
   const [username, setUsername] = useState(name)
   const [userFaculty, setFaculty] = useState(faculty)
   const [userId, setIdNo] = useState(idNo)
@@ -30,6 +32,10 @@ function UserCard({objID, name, faculty, idNo, role, popup}) {
     userUpdateController(objID, newData).then((res) => console.log(res)).catch((e) => console.log(e.message))
   }
 
+  const deleteUser = () => {
+    userDeleteController(objID).then((res) => console.log(res.data)).catch((e) => console.log(e.message));
+  }
+
   return (
     <>
     <Card sx={{color: "white", display: 'flex', paddingY: '20px', borderRadius: '12px', backgroundColor: 'rgba(255, 255, 255, 0.137)'}}>
@@ -39,7 +45,7 @@ function UserCard({objID, name, faculty, idNo, role, popup}) {
       <Typography sx={styles}>{role}</Typography>
       <CardActions sx={{...styles, marginX: '12px'}}>
         <UpdateButton onClick={() => setUpdatePop(true)} buttonText='Update' variant='contained' />
-        <DelButton onClick={() => alert('delete function')} buttonText='Delete' variant='contained' />
+        <DelButton onClick={() => setDeletePop(true)} buttonText='Delete' variant='contained' />
       </CardActions>
     </Card>
     {/* Popup Dialog */}
@@ -63,6 +69,27 @@ function UserCard({objID, name, faculty, idNo, role, popup}) {
           <Button variant="contained" onClick={() => setUpdatePop(false)}>Cancel</Button>
           <Button variant="contained" onClick={() => updateUser()} autoFocus>
             Update
+          </Button>
+        </DialogActions>
+      </Dialog>
+      
+
+      <Dialog
+        open={deletePop}
+        onClose={() => setDeletePop(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure?"}
+        </DialogTitle>
+        <DialogContent>
+          <Typography>This will remove <b>{username}</b> from the system permanently.</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="contained" onClick={() => setDeletePop(false)}>Cancel</Button>
+          <Button variant="contained" onClick={() => deleteUser()} autoFocus>
+            Yes
           </Button>
         </DialogActions>
       </Dialog>
