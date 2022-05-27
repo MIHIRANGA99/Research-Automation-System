@@ -1,0 +1,19 @@
+.popUp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 40vh;
+    row-gap: 12px;
+    padding-top: 12px;
+}
+
+.mainDialog{
+    padding: 12px;
+    width: 100%;
+}
+
+.dialogTitle{
+    background-color: transparent;
+}

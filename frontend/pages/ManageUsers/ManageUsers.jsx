@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react";
 import "./manageUsers.css";
 
 const ManageUsers = () => {
+
   const [userData, setUserData] = useState([]);
+  const [pop, setPop] = useState(false);
 
   useEffect(() => {
     getUsers
@@ -20,14 +22,18 @@ const ManageUsers = () => {
         <label className="heading">Faculty</label>
         <label className="heading">Role</label>
       </div>
-      {userData.map((user) => {
+      {userData.map((user, index) => {
         return (
+          <div key={index}>
           <UserCard
             role="Student"
             idNo={user.student_id}
             faculty={user.faculty}
             name={user.name}
+            popup={pop}
+            objID={user._id}
           />
+          </div>
         );
       })}
     </div>
