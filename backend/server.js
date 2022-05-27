@@ -3,7 +3,7 @@ import "dotenv/config";
 import studentRouter from "./routes/student.routes.js";
 import json from "koa-json";
 import bodyparser from "koa-bodyparser";
-import cors from "koa-cors";
+import cors from "@koa/cors";
 import Koa from "koa";
 
 const app = new Koa();
