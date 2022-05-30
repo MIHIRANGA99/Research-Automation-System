@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import "./App.css";
 import Header from "./components/Header/Header";
+import StaffRegister from "./components/Staff/StaffRegister";
+import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
 
 function app() {
 
@@ -24,6 +26,8 @@ function app() {
       <div className="pages">
         <Routes>
           <Route path="/components" element={<></>} />
+          <Route path="/staff/register" element={<StaffRegister/>} />
+          <Route path="/staff/panel/evaluate/presentation" element={<EvaluatePresentation/>} />
         </Routes>
       </div>
     </div>
