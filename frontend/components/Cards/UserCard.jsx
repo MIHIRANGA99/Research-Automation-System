@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 import DelButton from "../Buttons/DelButton";
 import UpdateButton from "../Buttons/UpdateButton";
 import { dialog } from "../../themes/themes";
-import userUpdateController from "../../controllers/userUpdateController";
-import userDeleteController from "../../controllers/userDeleteController";
+import { deleteUserById, updateUserById } from "../../controllers/userController";
 
 function UserCard({objID, name, faculty, idNo, role, popup}) {
 
@@ -29,11 +28,11 @@ function UserCard({objID, name, faculty, idNo, role, popup}) {
       faculty: userFaculty
     }
 
-    userUpdateController(objID, newData, role).then((res) => console.log(res)).catch((e) => console.log(e.message))
+    updateUserById(objID, newData, role).then((res) => console.log(res)).catch((e) => console.log(e.message))
   }
 
   const deleteUser = () => {
-    userDeleteController(objID, role).then((res) => console.log(res.data)).catch((e) => console.log(e.message));
+    deleteUserById(objID, role).then((res) => console.log(res.data)).catch((e) => console.log(e.message));
   }
 
   return (
