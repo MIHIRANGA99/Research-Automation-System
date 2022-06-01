@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation/Navigation";
 import "./App.css";
 import Header from "./components/Header/Header";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
+import SubmissionTypes from "./pages/SubmissionTypes/SubmissionTypes";
 
 function app() {
 
@@ -25,6 +26,7 @@ function app() {
       <div className="pages">
         <Routes>
           <Route path="/manage-users" element={<ManageUsers />} />
+          <Route path="/submission-types" element={<SubmissionTypes />} />
         </Routes>
       </div>
     </div>
