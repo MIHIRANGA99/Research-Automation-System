@@ -1,5 +1,5 @@
 import {
-    Avatar, Box,
+    Avatar, Box, Button,
     Container,
     Paper,
     Table,
@@ -10,9 +10,10 @@ import {
     TableRow,
     TextField, Typography
 } from "@mui/material";
-import {LoadingButton} from "@mui/lab";
-import {AddModerator} from "@mui/icons-material";
 import CoPresentIcon from '@mui/icons-material/CoPresent';
+import {useState} from "react";
+import api from "../../axios/PanelMemberAPI";
+import {useParams} from "react-router-dom";
 
 function createData(description, mark) {
     return { description, mark };
@@ -27,11 +28,25 @@ const rows = [
 ];
 
 export default function EvaluatePresentation(){
+    const { id } = useParams();
+    const [marks, setMarks] = useState([]);
+
+    const updateState = (desc, value) => {
+        const newState = marks.map(obj => {
+            if (obj.description.includes(desc)) {
+                return {...obj, mark: value};
+            }
+            return obj;
+        });
+
+        setMarks(newState);
+    };
+
     return (
         <>
             <br/>
             <br/>
-            <Container component={Paper} >
+            <Container component={Paper} sx={{backgroundColor: "#C4A484"}}>
                 <br/>
                 <Box  sx={{display:"flex", justifyContent:"center",}}>
                     <Avatar sx={{m: 1, bgcolor: 'secondary.main', width: 60, height: 60}}>
@@ -67,6 +82,7 @@ export default function EvaluatePresentation(){
                 <hr/>
                 <Typography variant={"h4"} sx={{display:"flex", justifyContent:"center",}}>Presentation Marks</Typography>
                 <hr/>
+                <Typography variant={"h6"} sx={{display:"flex", justifyContent:"center",}}>Group ID :- {id}</Typography>
                 <br/>
                 <TableContainer component={Paper}>
                     <Table>
@@ -85,7 +101,43 @@ export default function EvaluatePresentation(){
                                     <TableCell component="th" scope="row">{row.description}</TableCell>
                                     <TableCell align="right">
                                         <TextField
+                                            type="number"
                                             label="mark"
+                                            defaultValue={0}
+                                            InputProps={{ inputProps: {
+                                                min: 0,
+                                                max: row.mark,
+                                                // onKeyDown: (event) => {
+                                                //         event.preventDefault();
+                                                //     },
+                                                } }}
+                                            onBlur={() => {
+                                                if(marks.length > 0){
+                                                    const flag = marks.every((data) => {
+                                                        if (data.description.includes(row.description)) {
+                                                            return false;
+                                                        }
+                                                        return true
+                                                    })
+
+                                                    if(flag === false){
+                                                        updateState(row.description, event.target.value)
+                                                    }
+                                                    else {
+                                                        setMarks([...marks, {
+                                                            description: row.description,
+                                                            mark: event.target.value
+                                                        }])
+                                                    }
+                                                }
+                                                else {
+                                                    setMarks([...marks, {
+                                                        description: row.description,
+                                                        mark: event.target.value
+                                                    }])
+                                                }
+
+                                            }}
                                         />
                                     </TableCell>
                                 </TableRow>
@@ -93,14 +145,18 @@ export default function EvaluatePresentation(){
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <LoadingButton
+                <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     sx={{mt: 3, mb: 2}}
+                    onClick={() => {
+                        api.PanelMember.evaluatePresentation({groupID: "20112456", marksDetails: marks})
+                        //console.log(marks)
+                    }}
                 >
                     Submit
-                </LoadingButton>
+                </Button>
             </Container>
             <br/>
             <br/>

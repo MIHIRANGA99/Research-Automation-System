@@ -5,6 +5,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import StaffRegister from "./components/Staff/StaffRegister";
 import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
+import PresentationGroupList from "./components/Panel/PresentationGroupList";
 
 function app() {
 
@@ -27,7 +28,8 @@ function app() {
         <Routes>
           <Route path="/components" element={<></>} />
           <Route path="/staff/register" element={<StaffRegister/>} />
-          <Route path="/staff/panel/evaluate/presentation" element={<EvaluatePresentation/>} />
+          <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
+          <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
         </Routes>
       </div>
     </div>

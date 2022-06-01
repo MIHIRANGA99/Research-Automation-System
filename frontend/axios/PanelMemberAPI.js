@@ -13,7 +13,12 @@ const request = {
 }
 
 const PanelMember = {
-    addMember: (values) => request.post('panelMember/addMember', values)
+    //addMember: (values) => request.post('panelMember/addMember', values),
+    evaluatePresentation: (values) => request.post('panelMember/evaluatePresentation', values),
 }
 
-export default PanelMember;
+const api = {
+    PanelMember
+}
+
+export default api;
