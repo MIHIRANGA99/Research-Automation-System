@@ -5,7 +5,7 @@ const router = new Router({
     prefix: '/submission-types'
 })
 
-router.post('/add', async (ctx, next) => {
+router.post('/', async (ctx, next) => {
     const data = ctx.request.body
     await addSubmissionType(data).then((res) => {
         ctx.body = res
