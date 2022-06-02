@@ -1,20 +1,23 @@
 .pages{
-    background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(35,0,0,1) 100%);
 }
 
 .main{
     display: flex;
+    flex-direction: row;
     height: 100vh;
+    position: relative;
 }
 
 .side-bar{
     background-color: #171717;
     height: 100%;
-    padding: 20px;
-    flex-grow: 1;
+    width: 20%;
+    position: fixed;
 }
 
 .pages{
-    flex-grow: 17;
+    position: absolute;
+    height: 100vh;
+    right: 0;
+    width: 80%;
 }

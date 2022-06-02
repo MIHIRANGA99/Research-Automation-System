@@ -25,3 +25,29 @@ export const deleteButton = createTheme({
     },
   },
 });
+
+export const addButton = createTheme({
+  palette: {
+    primary: {
+      main: "#483927",
+      dark: "#6D5337",
+    },
+    secondary: {
+      main: "#FFCE97",
+      dark: "#FCBD75",
+    },
+  },
+});
+
+export const dialog = createTheme({
+  palette: {
+    primary: {
+      main: "#483927",
+      dark: "#6D5337",
+    },
+    secondary: {
+      main: "#FFCE97",
+      dark: "#FCBD75",
+    },
+  },
+});

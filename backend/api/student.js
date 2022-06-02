@@ -1,5 +1,11 @@
 import Student from '../models/Student.model.js'
 
+export const registerStudent = async (std) => {
+    const newStudent = await Student(std)
+    newStudent.save()
+    return newStudent;
+}
+
 export const getAllStudents = async () => {
     const students = await Student.find({});
     return students;

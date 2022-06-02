@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import "./App.css";
 import Header from "./components/Header/Header";
+import ManageUsers from "./pages/ManageUsers/ManageUsers";
+import SubmissionTypes from "./pages/SubmissionTypes/SubmissionTypes";
+import Documents from "./pages/Documents/Documents";
 import StaffRegister from "./components/Staff/StaffRegister";
 import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
 import PresentationGroupList from "./components/Panel/PresentationGroupList";
@@ -15,6 +18,7 @@ function app() {
     { name: "Student Groups", link: "/student-groups" },
     { name: "Submission Types", link: "/submission-types" },
     { name: "Panels", link: "/panels" },
+    { name: "Documents", link: "/documents" },
     { name: "Marking Schemes", link: "/marking-schemes" },
   ];
 
@@ -26,7 +30,9 @@ function app() {
       </div>
       <div className="pages">
         <Routes>
-          <Route path="/components" element={<></>} />
+          <Route path="/manage-users" element={<ManageUsers />} />
+          <Route path="/submission-types" element={<SubmissionTypes />} />
+          <Route path="/documents" element={<Documents />} />
           <Route path="/staff/register" element={<StaffRegister/>} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
