@@ -6,10 +6,11 @@ import bodyparser from "koa-bodyparser";
 import cors from "@koa/cors";
 import Koa from "koa";
 import staffRouter from "./routes/staff.router.js";
-import submissionTypeRouter from "./routes/submission-type.routes.js"
-import documentRouter from "./routes/document.routes.js"
-import panelRouter from "./routes/panel.routes.js"
-import studentGroupRouter from "./routes/student-group.routes.js"
+import submissionTypeRouter from "./routes/submission-type.routes.js";
+import documentRouter from "./routes/document.routes.js";
+import panelRouter from "./routes/panel.routes.js";
+import studentGroupRouter from "./routes/student-group.routes.js";
+import requestsRouter from "./routes/requests.routes.js";
 
 const app = new Koa();
 
@@ -21,10 +22,13 @@ app.use(bodyparser());
 
 app.use(studentRouter.routes()).use(studentRouter.allowedMethods());
 app.use(staffRouter.routes()).use(staffRouter.allowedMethods());
-app.use(submissionTypeRouter.routes()).use(submissionTypeRouter.allowedMethods());
+app
+  .use(submissionTypeRouter.routes())
+  .use(submissionTypeRouter.allowedMethods());
 app.use(documentRouter.routes()).use(documentRouter.allowedMethods());
 app.use(panelRouter.routes()).use(panelRouter.allowedMethods());
 app.use(studentGroupRouter.routes()).use(studentGroupRouter.allowedMethods());
+app.use(requestsRouter.routes()).use(requestsRouter.allowedMethods());
 
 app.listen(PORT, () => {
   console.log("Server Started on port : " + PORT);
