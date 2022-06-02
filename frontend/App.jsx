@@ -5,6 +5,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import SubmissionTypes from "./pages/SubmissionTypes/SubmissionTypes";
+import Documents from "./pages/Documents/Documents";
 
 function app() {
 
@@ -14,6 +15,7 @@ function app() {
     { name: "Student Groups", link: "/student-groups" },
     { name: "Submission Types", link: "/submission-types" },
     { name: "Panels", link: "/panels" },
+    { name: "Documents", link: "/documents" },
     { name: "Marking Schemes", link: "/marking-schemes" },
   ];
 
@@ -27,6 +29,7 @@ function app() {
         <Routes>
           <Route path="/manage-users" element={<ManageUsers />} />
           <Route path="/submission-types" element={<SubmissionTypes />} />
+          <Route path="/documents" element={<Documents />} />
         </Routes>
       </div>
     </div>
