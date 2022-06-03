@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
-import "./App.css";
 import Header from "./components/Header/Header";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import SubmissionTypes from "./pages/SubmissionTypes/SubmissionTypes";
@@ -12,6 +11,9 @@ import PresentationGroupList from "./components/Panel/PresentationGroupList";
 import StudentGroups from "./pages/StudentGroups/StudentGroups";
 import StdGroups from "./pages/StdGroups/StdGroups";
 import Requests from "./pages/Requests/Requests";
+import MarkingScheme from "./pages/MarkingScheme/MarkingScheme";
+import "./App.css";
+
 
 function app() {
   const adminMenu = [
@@ -41,6 +43,8 @@ function app() {
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList />} />
           <Route path="/staff/supervisor/std-groups" element={<StdGroups />} />
           <Route path="/staff/supervisor/requests" element={<Requests />} />
+          <Route path="/marking-schemes" element={<MarkingScheme />} />
+
         </Routes>
       </div>
     </div>
