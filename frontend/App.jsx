@@ -9,11 +9,13 @@ import StaffRegister from "./components/Staff/StaffRegister";
 import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
 import PresentationGroupList from "./components/Panel/PresentationGroupList";
 import StudentGroups from "./pages/StudentGroups/StudentGroups";
+import StdGroups from "./pages/StdGroups/StdGroups";
+import Requests from "./pages/Requests/Requests";
 import MarkingScheme from "./pages/MarkingScheme/MarkingScheme";
 import "./App.css";
 
-function app() {
 
+function app() {
   const adminMenu = [
     { name: "Home", link: "/home" },
     { name: "Manage Users", link: "/manage-users" },
@@ -27,7 +29,7 @@ function app() {
   return (
     <div className="main">
       <div className="side-bar">
-        <Header role='ADMIN' />
+        <Header role="ADMIN" />
         <Navigation menuItems={adminMenu} />
       </div>
       <div className="pages">
@@ -35,11 +37,14 @@ function app() {
           <Route path="/manage-users" element={<ManageUsers />} />
           <Route path="/submission-types" element={<SubmissionTypes />} />
           <Route path="/documents" element={<Documents />} />
-          <Route path="/staff/register" element={<StaffRegister/>} />
+          <Route path="/staff/register" element={<StaffRegister />} />
           <Route path="/student-groups" element={<StudentGroups />} />
+          <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation />} />
+          <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList />} />
+          <Route path="/staff/supervisor/std-groups" element={<StdGroups />} />
+          <Route path="/staff/supervisor/requests" element={<Requests />} />
           <Route path="/marking-schemes" element={<MarkingScheme />} />
-          <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
-          <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
+
         </Routes>
       </div>
     </div>
