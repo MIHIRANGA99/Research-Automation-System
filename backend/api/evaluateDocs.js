@@ -1,4 +1,10 @@
-import EvaluateDocsModel from "../models/Requests.model.js";
+import EvaluateDocsModel from "../models/EvaluateDocs.model.js";
+
+export const assignMarks = async (data) => {
+    const newMarks = new EvaluateDocsModel(data);
+    newMarks.save()
+    return newMarks;
+};
 
 export const getMarks = async () => {
   const marks = await EvaluateDocsModel.find({});
