@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const MarkingScheme = new Schema({
     name: {type: String, required: true},
+    faculty: {type: String, required: true},
     url: {type: String, required: true},
 });
 
