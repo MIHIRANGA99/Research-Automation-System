@@ -38,10 +38,8 @@ return (
                     <TableHead>
                         <TableRow>
                             <TableCell sx={{fontWeight: 600, fontSize: 18}}>Group ID</TableCell>
-                            <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Group Leader</TableCell>
-                            <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Group Member</TableCell>
-                            <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Group Member</TableCell>
-                            <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Group Member</TableCell>
+                            <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Topic</TableCell>
+                            <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Marks</TableCell>
                             <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
