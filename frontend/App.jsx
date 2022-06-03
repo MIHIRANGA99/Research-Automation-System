@@ -11,11 +11,12 @@ import PresentationGroupList from "./components/Panel/PresentationGroupList";
 import StudentGroups from "./pages/StudentGroups/StudentGroups";
 import MarkingScheme from "./pages/MarkingScheme/MarkingScheme";
 import "./App.css";
+import AdminHome from "./pages/AdminHome/AdminHome";
 
 function app() {
 
   const adminMenu = [
-    { name: "Home", link: "/home" },
+    { name: "Home", link: "/admin-home" },
     { name: "Manage Users", link: "/manage-users" },
     { name: "Student Groups", link: "/student-groups" },
     { name: "Submission Types", link: "/submission-types" },
@@ -38,6 +39,7 @@ function app() {
           <Route path="/staff/register" element={<StaffRegister/>} />
           <Route path="/student-groups" element={<StudentGroups />} />
           <Route path="/marking-schemes" element={<MarkingScheme />} />
+          <Route path="/admin-home" element={<AdminHome />} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
         </Routes>
