@@ -1,0 +1,32 @@
+.subTypesMain{
+    padding: 20px;
+}
+
+.cardsView{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 20vh);
+    gap: 12px;
+    padding: 20px 0px;
+}
+
+.nameHeading{
+    color: #FFCE97;
+}
+
+.typeCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #533c2c2a;
+    color: white;
+    padding: 12px 0px;
+    border-radius: 20px;
+    transition-duration: 0.1s;
+}
+
+.typeCard:hover{
+    background-color: #69564959;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}

@@ -9,8 +9,12 @@ import Documents from "./pages/Documents/Documents";
 import StaffRegister from "./components/Staff/StaffRegister";
 import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
 import PresentationGroupList from "./components/Panel/PresentationGroupList";
+import StudentLogin from "./pages/Login/login"
+import StudentSignup from "./pages/Student/registration"
+import CreateGroups from "./pages/StudentGroups/CreateGroup";
 
 function app() {
+  const user = localStorage.getItem("token");
 
   const adminMenu = [
     { name: "Home", link: "/home" },
@@ -20,7 +24,7 @@ function app() {
     { name: "Panels", link: "/panels" },
     { name: "Documents", link: "/documents" },
     { name: "Marking Schemes", link: "/marking-schemes" },
-  ];
+  ];  
 
   return (
     <div className="main">
@@ -36,9 +40,14 @@ function app() {
           <Route path="/staff/register" element={<StaffRegister/>} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
+          {user && <Route path="/student/register" element={<StudentSignup />} />}
+          <Route path="/student/login" element={<StudentLogin/>}/>
+          <Route path="/student/register" element={<StudentSignup/>} />
+          <Route path="/student-group/create" element={<CreateGroups/>}/>
         </Routes>
       </div>
     </div>
+    
   );
 }
 

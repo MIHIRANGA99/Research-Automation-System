@@ -5,10 +5,9 @@ import {
   updateStudent,
   deleteStudent,
 } from "../api/student.js";
-import validate from "../Validations/studentValidation.js";
+import {validate, validateLogin} from "../Validations/studentValidation.js";
 import Student from "../models/Student.model.js";
 import bcrypt from "bcrypt";
-import Joi from "joi";
 
 const router = new Router({
   prefix: "/student",
@@ -72,11 +71,13 @@ router.post("/login", async (ctx, next) => {
 			user.password
 		);
 		if (!validPassword){
+            console.log("Invalid ID or Password");
             ctx.body = "Invalid ID or Password"
             return
         }
 
 		const token = user.generateAuthToken();
+    console.log("logged in successfully");
 		ctx.body = { data: token, message: "logged in successfully" }
 	} catch (error) {
     console.log(error.message, error)
@@ -84,13 +85,7 @@ router.post("/login", async (ctx, next) => {
 	}
 });
 
-const validateLogin = (data) => {
-	const schema = Joi.object({
-		student_id: Joi.string().required().label("Student ID"),
-		password: Joi.string().required().label("Password"),
-	});
-	return schema.validate(data);
-};
+
 
 router.get("/", async (ctx, next) => {
   await getAllStudents()
