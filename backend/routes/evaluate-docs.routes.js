@@ -1,5 +1,6 @@
 import Router from "@koa/router";
 import {
+  assignMarks,
   getMarks,
   getOneMark,
   updateMarks,
@@ -8,6 +9,15 @@ import {
 
 const router = new Router({
   prefix: "/Marks",
+});
+
+router.post('/', async (ctx, next) => {
+    const data = ctx.request.body
+    await assignMarks(data).then((res) => {
+        ctx.body = res
+    }).catch((e) => {
+        ctx.body = e.message
+    })
 });
 
 router.get("/", async (ctx, next) => {
