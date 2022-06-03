@@ -19,12 +19,6 @@ const PORT = process.env.PORT || "8090";
 app.use(json());
 app.use(cors());
 app.use(bodyparser());
-app.use(async (ctx, next) => {
-  ctx.set('Access-Control-Allow-Origin', '*');
-  ctx.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  ctx.set('Access-Control-Allow-Headers', 'Content-Type');
-  await next();
-});
 
 app.use(studentRouter.routes()).use(studentRouter.allowedMethods());
 app.use(staffRouter.routes()).use(staffRouter.allowedMethods());
