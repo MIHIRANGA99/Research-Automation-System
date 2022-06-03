@@ -58,10 +58,6 @@
     width: 100%;
 }
 
-.popUp{
-    background-color: black;
-}
-
 .staffMemberCard:hover{
     background-color: #ffce97be;
     transition-duration: 0.2s;
