@@ -5,3 +5,13 @@ export const registerGroup = async (group) => {
     newGroup.save()
     return newGroup
 }
+
+export const getAllGroups = async () => {
+    const groups = await stdGroupModel.find({})
+    return groups
+}
+
+export const updateGroup = async (id, data) => {
+    await stdGroupModel.findByIdAndUpdate(id, data)
+    return stdGroupModel.findById(id)
+}

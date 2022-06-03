@@ -5,7 +5,7 @@ const router = new Router({
     prefix: "/document"
 });
 
-router.post('/create', async (ctx, next) => {
+router.post('/', async (ctx, next) => {
     await createDoc(ctx.request.body).then((res) => {
         ctx.body = res
     }).catch((e) => {
