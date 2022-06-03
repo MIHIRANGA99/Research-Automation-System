@@ -6,6 +6,9 @@ import Header from "./components/Header/Header";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import SubmissionTypes from "./pages/SubmissionTypes/SubmissionTypes";
 import Documents from "./pages/Documents/Documents";
+import StaffRegister from "./components/Staff/StaffRegister";
+import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
+import PresentationGroupList from "./components/Panel/PresentationGroupList";
 
 function app() {
 
@@ -30,6 +33,9 @@ function app() {
           <Route path="/manage-users" element={<ManageUsers />} />
           <Route path="/submission-types" element={<SubmissionTypes />} />
           <Route path="/documents" element={<Documents />} />
+          <Route path="/staff/register" element={<StaffRegister/>} />
+          <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
+          <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
         </Routes>
       </div>
     </div>
