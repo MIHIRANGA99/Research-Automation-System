@@ -8,12 +8,21 @@ import Documents from "./pages/Documents/Documents";
 import StaffRegister from "./components/Staff/StaffRegister";
 import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
 import PresentationGroupList from "./components/Panel/PresentationGroupList";
+// reorder [CONFLICTS]
+import StudentLogin from "./pages/Login/login"
+import StudentSignup from "./pages/Student/registration"
+import CreateGroups from "./pages/StudentGroups/CreateGroup";
+
+function app() {
+  const user = localStorage.getItem("token");
+
 import StudentGroups from "./pages/StudentGroups/StudentGroups";
 import StdGroups from "./pages/StdGroups/StdGroups";
 import Requests from "./pages/Requests/Requests";
 import MarkingScheme from "./pages/MarkingScheme/MarkingScheme";
 import "./App.css";
 import AdminHome from "./pages/AdminHome/AdminHome";
+
 
 
 function app() {
@@ -25,7 +34,7 @@ function app() {
     { name: "Panels", link: "/panels" },
     { name: "Documents", link: "/documents" },
     { name: "Marking Schemes", link: "/marking-schemes" },
-  ];
+  ];  
 
   return (
     <div className="main">
@@ -48,9 +57,14 @@ function app() {
           <Route path="/admin-home" element={<AdminHome />} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
+          {user && <Route path="/student/register" element={<StudentSignup />} />}
+          <Route path="/student/login" element={<StudentLogin/>}/>
+          <Route path="/student/register" element={<StudentSignup/>} />
+          <Route path="/student-group/create" element={<CreateGroups/>}/>
         </Routes>
       </div>
     </div>
+    
   );
 }
 

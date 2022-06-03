@@ -5,7 +5,7 @@ const router = new Router({
     prefix: '/student-group'
 })
 
-router.post('/', async (ctx, next) =>{
+router.post('/create', async (ctx, next) =>{
     await registerGroup(ctx.request.body).then((res) => {
         ctx.body = res
     }).catch((e) => {
