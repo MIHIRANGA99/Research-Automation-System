@@ -22,7 +22,7 @@ import {
 function RequestCard({ objID, groupId, members, researchTopic, popup }) {
   const styles = {
     display: "flex",
-    flex: 1,
+    flex: 7,
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
@@ -31,6 +31,7 @@ function RequestCard({ objID, groupId, members, researchTopic, popup }) {
 
   const styles1 = {
     display: "flex",
+    flex: 10,
     flexDirection: "column",
     textAlign: "center",
     alignItems: "center",
