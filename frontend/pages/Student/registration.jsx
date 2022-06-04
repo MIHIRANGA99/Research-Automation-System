@@ -38,7 +38,7 @@ const Signup = () => {
 		<div className="signup_container">
 			<div className="signup_form_container">
 				<div className="left_part">
-					<h1>Welcome Back</h1>
+					<h1>WELCOME</h1>
 					<Link to="/student/login">
 						<button type="button" className="white_btn">
 							SIGN IN
@@ -47,7 +47,7 @@ const Signup = () => {
 				</div>
 				<div className="right_part">
 					<form className="form_container" onSubmit={handleSubmit}>
-						<h1>Create Account</h1>
+						<h1>SIGN UP</h1>
 						<input
 							type="String"
 							placeholder="Student ID"
@@ -94,7 +94,7 @@ const Signup = () => {
 						/>
 						{error && <div className="error_msg">{error}</div>}
 						<button type="submit" className="green_btn">
-							Sign Up
+							SIGN UP
 						</button>
 					</form>
 				</div>
