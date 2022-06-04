@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
   getGroups,
-  updateGroup,
 } from "../../controllers/studentGroupController";
 import { getStaff } from "../../controllers/userController";
-import "./StudentGroups.css";
+import "../StudentGroups/StudentGroups.css";
 
 const StudentGroups = () => {
   const [groupData, setGroupData] = useState([]);

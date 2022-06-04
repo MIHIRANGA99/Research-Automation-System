@@ -29,6 +29,16 @@ function RequestCard({ objID, groupId, members, researchTopic, popup }) {
     fontSize: "16px",
   };
 
+  const styles1 = {
+    display: "flex",
+    flex: 11,
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "16px",
+  };
+
+
   const [acceptPop, setAcceptPop] = useState(false);
   const [rejectPop, setRejectPop] = useState(false);
 
@@ -60,7 +70,7 @@ function RequestCard({ objID, groupId, members, researchTopic, popup }) {
         }}
       >
         <Typography sx={styles}>{groupId}</Typography>
-        <Typography sx={styles}>{members}</Typography>
+        <Typography sx={styles1}>{members}</Typography>
         <Typography sx={styles}>{researchTopic}</Typography>
         <CardActions sx={{ ...styles, marginX: "12px" }}>
           <AcceptButton

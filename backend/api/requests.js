@@ -1,5 +1,11 @@
 import RequestsModel from "../models/Requests.model.js";
 
+export const sendRequests = async (data) => {
+    const newRequest = new RequestsModel(data);
+    newRequest.save()
+    return newRequest;
+};
+
 export const getRequests = async () => {
   const requests = await RequestsModel.find({});
   return requests;
