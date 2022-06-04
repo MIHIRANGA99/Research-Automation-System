@@ -8,7 +8,7 @@ import {
 } from "../api/evaluateDocs.js";
 
 const router = new Router({
-  prefix: "/Marks",
+  prefix: "/EvaluateDocs",
 });
 
 router.post('/', async (ctx, next) => {
