@@ -21,12 +21,10 @@ const Signup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			
 			const url = "http://localhost:8090/student/register";
 			const { data: res } = await axios.post(url, data);
 			navigate("/student/login");
 			console.log(res.message);
-			
 		} catch (error) {
 			if (
 				console.log("Hari")
