@@ -12,13 +12,21 @@ const request = {
     delete: (url) => axios.delete(url).then(responseBody),
 }
 
+const Staff = {
+    addMember: (values) => request.post('staff/addStaff', values),
+}
+
 const PanelMember = {
-    //addMember: (values) => request.post('panelMember/addMember', values),
     evaluatePresentation: (values) => request.post('panelMember/evaluatePresentation', values),
+    evaluateTopic: (values) => request.post('panelMember/evaluateTopic', values),
+    getPresenEvaluDetailsById: (id) => request.get(`panelMember/getEvaluatePresentation/${id}`),
+    getGrouplistById: (id) => request.get(`panelMember/getGroupList/${id}`),
+    getGroupDetailsById: (id) => request.get(`panelMember/getGroupDetails/${id}`),
 }
 
 const api = {
-    PanelMember
+    PanelMember,
+    Staff
 }
 
 export default api;

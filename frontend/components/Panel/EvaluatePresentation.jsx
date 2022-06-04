@@ -13,7 +13,8 @@ import {
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 import {useState} from "react";
 import api from "../../axios/PanelMemberAPI";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {toast} from "react-toastify";
 
 function createData(description, mark) {
     return { description, mark };
@@ -30,6 +31,7 @@ const rows = [
 export default function EvaluatePresentation(){
     const { id } = useParams();
     const [marks, setMarks] = useState([]);
+    const navigate = useNavigate();
 
     const updateState = (desc, value) => {
         const newState = marks.map(obj => {
@@ -151,8 +153,12 @@ export default function EvaluatePresentation(){
                     variant="contained"
                     sx={{mt: 3, mb: 2}}
                     onClick={() => {
-                        api.PanelMember.evaluatePresentation({groupID: "20112456", marksDetails: marks})
-                        //console.log(marks)
+                        api.PanelMember.evaluatePresentation({groupID: id, marksDetails: marks})
+                            .then(() => {
+                                toast.success('Successfully evaluated');
+                                navigate('/staff/panel/presentation/groupList')
+                            })
+                            .catch((error) => console.error(error))
                     }}
                 >
                     Submit

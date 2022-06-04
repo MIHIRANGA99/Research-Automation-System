@@ -7,7 +7,6 @@ const router = new Router({
 
 router.post('/addStaff', async (ctx) => {
     const data = ctx.request.body;
-    console.log(data);
     const post = await addStaff(data);
     ctx.body = post;
     ctx.set('Content-Type', 'application.json');
