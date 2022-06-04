@@ -75,7 +75,7 @@ const Documents = () => {
 
   return (
     <>
-      <div>
+      <div style={{padding: '20px'}}>
         <AddButton
           buttonText="Upload new Document"
           onClick={() => setPopup(true)}
