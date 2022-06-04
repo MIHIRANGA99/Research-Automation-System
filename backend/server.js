@@ -15,6 +15,7 @@ import panelRouter from "./routes/panel.routes.js"
 import studentGroupRouter from "./routes/student-group.routes.js"
 import evaluateDocsRouter from "./routes/evaluate-docs.routes.js"
 import markingSchemeRouter from "./routes/markingScheme.routes.js"
+import projectDocsRouter from "./routes/projectDocs.routes.js"
 
 const app = new Koa();
 
@@ -35,6 +36,7 @@ app.use(requestsRouter.routes()).use(requestsRouter.allowedMethods());
 app.use(topicRegistration.routes()).use(topicRegistration.allowedMethods());
 app.use(evaluateDocsRouter.routes()).use(evaluateDocsRouter.allowedMethods());
 app.use(markingSchemeRouter.routes()).use(markingSchemeRouter.allowedMethods());
+app.use(projectDocsRouter.routes()).use(projectDocsRouter.allowedMethods());
 
 app.listen(PORT, () => {
   console.log("Server Started on port : " + PORT);

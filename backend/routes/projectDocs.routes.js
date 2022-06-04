@@ -1,12 +1,12 @@
 import Router from "@koa/router";
-import { createMarkingScheme, getMarkingSchemes, getOneMarkingSchemes, updateMarkingSchemes} from "../api/markingScheme.js";
+import { submitProjectDocs, getProjectDocs, getOneProjectDoc } from "../api/projectDocs.js";
 
 const router = new Router({
-  prefix: "/markingScheme",
+  prefix: "/projectDocs",
 });
 
 router.post("/", async (ctx, next) => {
-  await createMarkingScheme(ctx.request.body)
+  await submitProjectDocs(ctx.request.body)
     .then((res) => {
       ctx.body = res;
     })
@@ -16,7 +16,7 @@ router.post("/", async (ctx, next) => {
 });
 
 router.get("/", async (ctx, next) => {
-  await getMarkingSchemes()
+  await getProjectDocs()
     .then((res) => {
       ctx.body = res;
     })
@@ -26,7 +26,7 @@ router.get("/", async (ctx, next) => {
 });
 
 router.get("/:id", async (ctx, next) => {
-  await getOneMarkingSchemes(ctx.params.id)
+  await getOneProjectDoc(ctx.params.id)
     .then((res) => {
       ctx.body = res;
     })
@@ -35,14 +35,4 @@ router.get("/:id", async (ctx, next) => {
     });
 });
 
-router.patch("/:id", async (ctx, next) => {
-  await updateMarkingSchemes(ctx.params.id, ctx.request.body)
-    .then((res) => {
-      ctx.body = res;
-    })
-    .catch((e) => {
-      ctx.body = e.message;
-    });
-});
-
-export default router;
+export default router
