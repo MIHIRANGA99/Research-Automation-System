@@ -21,10 +21,12 @@ const Signup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			
 			const url = "http://localhost:8090/student/register";
 			const { data: res } = await axios.post(url, data);
 			navigate("/student/login");
 			console.log(res.message);
+			
 		} catch (error) {
 			if (
 				console.log("Hari")
@@ -37,7 +39,7 @@ const Signup = () => {
 	return (
 		<div className="signup_container">
 			<div className="signup_form_container">
-				<div className="left">
+				<div className="left_part">
 					<h1>Welcome Back</h1>
 					<Link to="/student/login">
 						<button type="button" className="white_btn">
@@ -45,7 +47,7 @@ const Signup = () => {
 						</button>
 					</Link>
 				</div>
-				<div className="right">
+				<div className="right_part">
 					<form className="form_container" onSubmit={handleSubmit}>
 						<h1>Create Account</h1>
 						<input
@@ -80,7 +82,7 @@ const Signup = () => {
 								<option value="0">Select Faculty:</option>
 								<option value="Faculty of Computing">Faculty of Computing</option>
 								<option value="Faculty of Engineering">Faculty of Engineering</option>
-								<option value="Faculty of Business Management">Faculty of usiness Management</option>
+								<option value="Faculty of Business Management">Faculty of Business Management</option>
 							</select>	
 						</div>
 						<input
