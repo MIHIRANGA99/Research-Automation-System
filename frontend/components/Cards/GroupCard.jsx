@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { getStaff } from "../../controllers/userController";
 import AllocateButton from "../../components/Buttons/AllocateButton";
 import { updateGroup } from "../../controllers/studentGroupController";
+import { createPanel } from "../../controllers/panelCrontroller";
 
 const GroupCard = ({ grpID, grpName, students, panel }) => {
   const [staffData, setStaffData] = useState([]);
@@ -33,6 +34,18 @@ const GroupCard = ({ grpID, grpName, students, panel }) => {
     }
   };
 
+  const registerPanel = (grpID) => {
+      const data = {
+          members: allocatedArray,
+          allocatedGroups: grpID
+      }
+      createPanel(data).then((res) => {
+          console.log(res.data)
+      }).catch(e => {
+          console.log(e.message)
+      })
+  }
+
   const allocatePanel = (id) => {
     const info = {
       panel: allocatedArray,
@@ -46,6 +59,8 @@ const GroupCard = ({ grpID, grpName, students, panel }) => {
       .catch((e) => {
         console.log(e.message);
       });
+
+    registerPanel(id)
   };
 
   const handlePop = () => {
