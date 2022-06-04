@@ -8,10 +8,12 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    TextField
+    TextField, ThemeProvider, Typography
 } from "@mui/material";
 import api from "../../axios/PanelMemberAPI";
 import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {addButton} from "../../themes/themes";
 
 function createData(groupID, groupLeader, groupMember1, groupMember2, groupMember3) {
     return { groupID, groupLeader, groupMember1, groupMember2, groupMember3 };
@@ -27,50 +29,87 @@ const rows = [
 
 export default function PresentationGroupList(){
     const navigate = useNavigate();
-return (
-    <>
-        <br/>
-        <br/>
-        <Container component={Paper} sx={{backgroundColor: "#C4A484"}}>
+    const [groupList, setGroupList] = useState([]);
+
+    useEffect(() => {
+        api.PanelMember.getGrouplistById("0099")
+            .then((data) => {
+                setGroupList([])
+                data.forEach((data1) => {
+                    api.PanelMember.getGroupDetailsById(data1)
+                        .then((group) => {
+                            setGroupList(groupList => groupList.concat(group))
+                        })
+                })
+            })
+    }, [])
+
+    function IsEvaluated(id){
+        const [isEvaluated, setIsEvaluated] = useState();
+        api.PanelMember.getPresenEvaluDetailsById(id)
+            .then((data) => {
+                if(data == ""){
+                    setIsEvaluated(false)
+                }else {
+                    setIsEvaluated(true)
+                }
+            })
+            .catch((error) => console.error(error))
+        return isEvaluated;
+    }
+
+    return (
+        <ThemeProvider theme={addButton}>
+        <>
             <br/>
-            <TableContainer component={Paper}>
-                <Table stickyHeader>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell sx={{fontWeight: 600, fontSize: 18}}>Group ID</TableCell>
-                            <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Topic</TableCell>
-                            <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Marks</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                                key={row.description}
-                            >
-                                <TableCell >{row.groupID}</TableCell>
-                                <TableCell align="center">{row.groupLeader}</TableCell>
-                                <TableCell align="center">{row.groupMember1}</TableCell>
-                                <TableCell align="center">{row.groupMember2}</TableCell>
-                                <TableCell align="center">{row.groupMember3}</TableCell>
-                                <TableCell align="center">
-                                    <Button
-                                        type="submit"
-                                        variant="contained"
-                                        size="small"
-                                        sx={{mt: 3, mb: 2}}
-                                        onClick={() => navigate(`/staff/panel/evaluate/presentation/${row.groupID}`)}
-                                    >
-                                        Evaluate
-                                    </Button>
-                                </TableCell>
+            <br/>
+            <Container component={Paper} sx={{backgroundColor: "#C4A484"}}>
+                <br/>
+                <hr/>
+                <Typography variant={"h4"} sx={{display:"flex", justifyContent:"center",}}>Presentation Evaluation Group List</Typography>
+                <hr/>
+                <br/>
+                <TableContainer component={Paper}>
+                    <Table stickyHeader>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell sx={{fontWeight: 600, fontSize: 18}}>Group Name</TableCell>
+                                <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Group Leader</TableCell>
+                                <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Group Member</TableCell>
+                                <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Group Member</TableCell>
+                                <TableCell align="center" sx={{fontWeight: 600, fontSize: 18}}>Group Member</TableCell>
+                                <TableCell></TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <br/>
-        </Container>
-    </>
-)
+                        </TableHead>
+                        <TableBody>
+                            {rows.map((row) => (
+                                <TableRow
+                                    key={row._id}
+                                >
+                                    <TableCell >{(row.groupID).toUpperCase()}</TableCell>
+                                    <TableCell align="center">{(row.groupLeader).toUpperCase()}</TableCell>
+                                    <TableCell align="center">{(row.groupMember1).toUpperCase()}</TableCell>
+                                    <TableCell align="center">{(row.groupMember2).toUpperCase()}</TableCell>
+                                    <TableCell align="center">{(row.groupMember3).toUpperCase()}</TableCell>
+                                    <TableCell align="center">
+                                        <Button
+                                            type="submit"
+                                            variant="contained"
+                                            size="small"
+                                            disabled={IsEvaluated(row.groupID)}
+                                            onClick={() => navigate(`/staff/panel/evaluate/presentation/${row.groupID}`)}
+                                        >
+                                            Evaluate
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <br/>
+            </Container>
+        </>
+        </ThemeProvider>
+    )
 }

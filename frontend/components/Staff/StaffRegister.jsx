@@ -18,6 +18,10 @@ import {toast} from 'react-toastify';
 import {AddModerator, Man, Woman} from '@mui/icons-material'
 import {LoadingButton} from "@mui/lab";
 import PanelMember from "../../axios/PanelMemberAPI";
+import api from "../../axios/PanelMemberAPI";
+import ComputerIcon from '@mui/icons-material/Computer';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import WorkIcon from '@mui/icons-material/Work';
 
 const theme = createTheme();
 
@@ -61,31 +65,45 @@ export default function StaffRegister() {
                 <Box
                     component="form"
                     onSubmit={handleSubmit((data) =>
-                        // agent.Account.register(data)
-                        //     .then(() => {
-                        //         toast.success('Registration successful - you can now login');
-                        //         navigate('/login')
-                        //     })
-                        //     .catch(error => handleApiErrors(error))
-                        // PanelMember.addMember(data)
-                        //     .then(() => {
-                        //         toast.success('Successfully registered');
-                        //     })
-                        //     .catch(error => handleApiErrors(error))
-                        console.log(data)
-
+                        api.Staff.addMember(data)
+                            .then(() => {
+                                toast.success('Successfully registered');
+                                navigate('/login');
+                            })
+                            .catch(error => handleApiErrors(error))
                     )}
                     noValidate
                     sx={{mt: 1}}
                 >
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        label="Staff ID"
-                        {...register('staff_id', {required: 'Staff ID is requird'})}
-                        error={errors.staff_id}
-                        helperText={errors?.staff_id?.message}
-                    />
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={6} lg={6}>
+                            <TextField
+                                margin="normal"
+                                fullWidth
+                                label="Staff ID"
+                                {...register('staff_id', {required: 'Staff ID is requird'})}
+                                error={errors.staff_id}
+                                helperText={errors?.staff_id?.message}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={6}>
+                            <FormControl fullWidth sx={{marginTop: 2}}>
+                                <InputLabel>Faculty</InputLabel>
+                                <Select
+                                    label="faculty"
+                                    margin="normal"
+                                    {...register('faculty')}
+                                    defaultValue={"FOC"}
+                                    sx={{height: 55}}
+                                >
+                                    <MenuItem value={"FOC"}><><ComputerIcon/>&nbsp;&nbsp;Faculty Of Computing</></MenuItem>
+                                    <MenuItem value={"FOE"}><><EngineeringIcon/>&nbsp;&nbsp;Faculty Of Engineering</></MenuItem>
+                                    <MenuItem value={"FOB"}><><WorkIcon/>&nbsp;&nbsp;Faculty Of Business</></MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+
                     <TextField
                         margin="normal"
                         fullWidth

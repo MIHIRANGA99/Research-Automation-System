@@ -8,6 +8,8 @@ import Documents from "./pages/Documents/Documents";
 import StaffRegister from "./components/Staff/StaffRegister";
 import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
 import PresentationGroupList from "./components/Panel/PresentationGroupList";
+import EvaluateTopic from "./components/Panel/EvaluateTopic";
+import TopicGroupList from "./components/Panel/TopicGroupList";
 import StudentLogin from "./pages/Login/login"
 import StudentSignup from "./pages/Student/registration"
 import CreateGroups from "./pages/StudentGroups/CreateGroup";
@@ -26,7 +28,7 @@ function app() {
   const navigate = useNavigate()
 
   const [menu, setMenu] = useState([])
-  
+
   useEffect(() => {
     const user = localStorage.getItem("role")
     console.log(window.location.pathname)
@@ -75,7 +77,8 @@ function app() {
   ];
 
   const panelmemberMenu = [
-    { name: "samplePanel", link: "/staff/panel/sample" },
+    { name: "Evaluate Topics", link: "/staff/panel/topic/groupList" },
+    { name: "Evaluate Presentation", link: "/staff/panel/presentation/groupList" },
   ]
 
   const supervisorMenu = [
@@ -103,14 +106,14 @@ function app() {
           <Route path="/admin/documents" element={<Documents />} />
           <Route path="/staff/register" element={<StaffRegister />} />
           <Route path="/admin/student-groups" element={<StudentGroups />} />
-          <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation />} />
-          <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList />} />
           <Route path="/staff/supervisor/std-groups" element={<StdGroups />} />
           <Route path="/staff/supervisor/requests" element={<Requests />} />
           <Route path="/admin/marking-schemes" element={<MarkingScheme />} />
           <Route path="/admin/admin-home" element={<AdminHome />} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
+          <Route path="/staff/panel/topic/groupList" element={<TopicGroupList/>} />
+          <Route path="/staff/panel/evaluate/topic/:id" element={<EvaluateTopic/>} />
           <Route path="/student/register" element={<StudentSignup />}/>
           <Route path="/student/login" element={<StudentLogin/>}/>
           <Route path="/student/register" element={<StudentSignup/>} />
@@ -120,7 +123,7 @@ function app() {
         </Routes>
       </div>
     </div>
-    
+
   );
 }
 
