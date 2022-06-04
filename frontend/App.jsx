@@ -29,16 +29,35 @@ function app() {
   useEffect(() => {
     const user = localStorage.getItem("role")
     console.log(window.location.pathname)
+    console.log(user)
 
     if(window.location.pathname.includes(user)){
+      if(user === "student"){
         setMenu(studentMenu)
+      }else if(user === 'panelmember'){
+        setMenu(panelmemberMenu)
+      }else if(user === 'supervisor'){
+        setMenu(supervisorMenu)
+      }else if(user === 'admin'){
+        setMenu(adminMenu)
+      }else{
+        navigate('/student/login')
+      }
     }else{
       if(user === "student"){
         navigate('/student')
         setMenu(studentMenu)
+      }else if(user === 'panelmember'){
+        navigate('/staff/panel')
+        setMenu(panelmemberMenu)
+      }else if(user === 'supervisor'){
+        navigate('/staff/supervisor')
+        setMenu(supervisorMenu)
       }else if(user === 'admin'){
-        navigate('/staff')
+        navigate('/admin')
         setMenu(adminMenu)
+      }else{
+        navigate('/student/login')
       }
     }
 
@@ -46,14 +65,21 @@ function app() {
 
 
   const adminMenu = [
-    { name: "Home", link: "/admin-home" },
-    { name: "Manage Users", link: "/manage-users" },
-    { name: "Student Groups", link: "/student-groups" },
-    { name: "Submission Types", link: "/submission-types" },
-    { name: "Panels", link: "/panels" },
-    { name: "Documents", link: "/documents" },
-    { name: "Marking Schemes", link: "/marking-schemes" },
-  ];  
+    { name: "Home", link: "/admin/admin-home" },
+    { name: "Manage Users", link: "/admin/manage-users" },
+    { name: "Student Groups", link: "/admin/student-groups" },
+    { name: "Submission Types", link: "/admin/submission-types" },
+    { name: "Documents", link: "/admin/documents" },
+    { name: "Marking Schemes", link: "/admin/marking-schemes" },
+  ];
+
+  const panelmemberMenu = [
+    { name: "samplePanel", link: "/staff/panel/sample" },
+  ]
+
+  const supervisorMenu = [
+    { name: "sampleSupervisor", link: "/staff/supervisor/sample" },
+  ]
 
   const studentMenu = [
     { name: "Create Student Group", link: "/student/create-group" },
@@ -66,23 +92,22 @@ function app() {
   return (
     <div className="main">
       <div className="side-bar">
-        <Header role={localStorage.getItem("role")} />
+        <Header role={localStorage.getItem("role")?.toLocaleUpperCase()} />
         <Navigation menuItems={menu} />
-        <Button variant="contained" onClick={() => localStorage.removeItem("role")} >Logout</Button> 
       </div>
-      <div className="pages">
+      <div className={(window.location.pathname.includes("login") || window.location.pathname.includes("register"))? "pagesLogin": "pages"}>
         <Routes>
-          <Route path="/manage-users" element={<ManageUsers />} />
-          <Route path="/submission-types" element={<SubmissionTypes />} />
-          <Route path="/documents" element={<Documents />} />
+          <Route path="/admin/manage-users" element={<ManageUsers />} />
+          <Route path="/admin/submission-types" element={<SubmissionTypes />} />
+          <Route path="/admin/documents" element={<Documents />} />
           <Route path="/staff/register" element={<StaffRegister />} />
-          <Route path="/student-groups" element={<StudentGroups />} />
+          <Route path="/admin/student-groups" element={<StudentGroups />} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation />} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList />} />
           <Route path="/staff/supervisor/std-groups" element={<StdGroups />} />
           <Route path="/staff/supervisor/requests" element={<Requests />} />
-          <Route path="/marking-schemes" element={<MarkingScheme />} />
-          <Route path="/admin-home" element={<AdminHome />} />
+          <Route path="/admin/marking-schemes" element={<MarkingScheme />} />
+          <Route path="/admin/admin-home" element={<AdminHome />} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
           <Route path="/student/register" element={<StudentSignup />}/>
