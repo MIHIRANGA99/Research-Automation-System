@@ -17,6 +17,8 @@ import StudentGroups from "./pages/StudentGroups/StudentGroups";
 import StdGroups from "./pages/StdGroups/StdGroups";
 import Requests from "./pages/Requests/Requests";
 import MarkingScheme from "./pages/MarkingScheme/MarkingScheme";
+import EvaluateDocuments from "./pages/EvaluateDocuments/EvaluateDocuments"
+import ProjectDocuments from "./pages/ProjectDocuments/ProjectDocuments"
 import "./App.css";
 import AdminHome from "./pages/AdminHome/AdminHome";
 import TopicRegister from "./pages/TopicRegister/topicRegister"
@@ -82,7 +84,11 @@ function app() {
   ]
 
   const supervisorMenu = [
-    { name: "sampleSupervisor", link: "/staff/supervisor/sample" },
+    { name: "Student Groups", link: "/staff/supervisor/std-groups" },
+    { name: "Requests", link: "/staff/supervisor/requests" },
+    { name: "Supervised Groups", link: "/staff/supervisor/supervised-groups" },
+    { name: "Submitted Documents", link: "/staff/supervisor/project-docs" },
+    { name: "Group Chats", link: "/staff/supervisor/group-chats" },
   ]
 
   const studentMenu = [
@@ -110,6 +116,8 @@ function app() {
           <Route path="/staff/supervisor/requests" element={<Requests />} />
           <Route path="/admin/marking-schemes" element={<MarkingScheme />} />
           <Route path="/admin/admin-home" element={<AdminHome />} />
+          <Route path="/staff/supervisor/evaluate-docs" element={<EvaluateDocuments />} />
+          <Route path="/staff/supervisor/project-docs" element={<ProjectDocuments />} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
           <Route path="/staff/panel/topic/groupList" element={<TopicGroupList/>} />

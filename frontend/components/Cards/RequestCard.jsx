@@ -31,7 +31,7 @@ function RequestCard({ objID, groupId, members, researchTopic, popup }) {
 
   const styles1 = {
     display: "flex",
-    flex: 11,
+    flexDirection: "column",
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
@@ -70,7 +70,7 @@ function RequestCard({ objID, groupId, members, researchTopic, popup }) {
         }}
       >
         <Typography sx={styles}>{groupId}</Typography>
-        <Typography sx={styles1}>{members}</Typography>
+        <Typography sx={styles1}>{members.map((mem) => <Typography sx ={styles1}>{mem}</Typography>)}</Typography>
         <Typography sx={styles}>{researchTopic}</Typography>
         <CardActions sx={{ ...styles, marginX: "12px" }}>
           <AcceptButton
