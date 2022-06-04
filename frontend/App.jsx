@@ -36,7 +36,7 @@ function app() {
     console.log(window.location.pathname)
     console.log(user)
 
-    if(window.location.pathname.includes(user)){
+    if(window.location.pathname.includes(user) || window.location.pathname.includes('panel')){
       if(user === "student"){
         setMenu(studentMenu)
       }else if(user === 'panelmember'){
@@ -53,7 +53,7 @@ function app() {
         navigate('/student')
         setMenu(studentMenu)
       }else if(user === 'panelmember'){
-        navigate('/staff/panel')
+        navigate('/staff/panel/topic/groupList')
         setMenu(panelmemberMenu)
       }else if(user === 'supervisor'){
         navigate('/staff/supervisor')

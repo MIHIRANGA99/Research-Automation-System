@@ -31,7 +31,7 @@ const Login = () => {
 			}else if(role === "admin"){
 				window.location = "/admin";
 			}else if(role === "panelmember"){
-				window.location = "/panelmember";
+				window.location = "/staff/panel/topic/groupList";
 			}else if(role === "supervisor"){
 				window.location = "/supervisor";
 			}
