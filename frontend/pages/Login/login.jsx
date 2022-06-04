@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom"
 import "./login.css"
 
 const Login = () => {
-	const [data, setData] = useState({ student_id: "", password: "", role: "" });
+	const [data, setData] = useState({ student_id: "", password: ""});
+	const [role, setRole] = useState('')
 	const [error, setError] = useState("");
 
 	const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
 	};
+
+	useEffect(() => {
+		console.log(localStorage.getItem("token"), localStorage.getItem("role"))
+	},[])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -17,7 +22,15 @@ const Login = () => {
 			const url = "http://localhost:8090/student/login";
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("token", res.data);
-			window.location = "/";
+			localStorage.setItem("role", role)
+
+			if(role === "student"){
+				window.location = "/student";
+			}else{
+				window.location = "/staff";
+			}
+
+			
 		} catch (error) {
 			if (
 				console.log(error)
@@ -32,7 +45,7 @@ const Login = () => {
 			<div className="login_form_container">
 				<div className="left">
 					<form className="form_container" onSubmit={handleSubmit}>
-						<h1>STUDENT LOGIN</h1>
+						<h1>STUDENThdfz LOGIN</h1>
 						
 						<input
 							type="String"
@@ -52,12 +65,13 @@ const Login = () => {
 							required
 							className="input"
 						/>
-						<div className="dropdown">
-							<button class="dropbtn">Select Role</button>
-							<div class="dropdown-content">
-							<a href="/student/login">Student</a>
-							<a href="/student/register">Panel Member</a>
-							</div>
+						<div className="select">
+							<select name="role" onChange={(e) => {setRole(e.target.value)}}>
+								<option value="0">Select Role:</option>
+								<option value="student">Student</option>
+								<option value="staffmember">Staff Member</option>
+								<option value="admin">Admin</option>
+							</select>	
 						</div>
 						{error && <div className="error_msg">{error}</div>}
 						<button type="submit" className="green_btn">

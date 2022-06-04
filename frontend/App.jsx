@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import Header from "./components/Header/Header";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
@@ -17,10 +17,34 @@ import Requests from "./pages/Requests/Requests";
 import MarkingScheme from "./pages/MarkingScheme/MarkingScheme";
 import "./App.css";
 import AdminHome from "./pages/AdminHome/AdminHome";
+import TopicRegister from "./pages/TopicRegister/topicRegister"
+import { Button } from "@mui/material";
 
 function app() {
-  const user = localStorage.getItem("token");
+
+  const navigate = useNavigate()
+
+  const [menu, setMenu] = useState([])
   
+  useEffect(() => {
+    const user = localStorage.getItem("role")
+    console.log(window.location.pathname)
+
+    if(window.location.pathname.includes(user)){
+        setMenu(studentMenu)
+    }else{
+      if(user === "student"){
+        navigate('/student')
+        setMenu(studentMenu)
+      }else if(user === 'admin'){
+        navigate('/staff')
+        setMenu(adminMenu)
+      }
+    }
+
+  },[])
+
+
   const adminMenu = [
     { name: "Home", link: "/admin-home" },
     { name: "Manage Users", link: "/manage-users" },
@@ -31,11 +55,20 @@ function app() {
     { name: "Marking Schemes", link: "/marking-schemes" },
   ];  
 
+  const studentMenu = [
+    { name: "Create Student Group", link: "/student/create-group" },
+    { name: "Register Research Topic", link: "/student/topic-registration" },
+    { name: "Request Supervisor", link: "/student/request-supervisor" },
+    { name: "Submit Documents", link: "/student/submit-document" },
+    { name: "Download Templates", link: "/student/download-templates" }
+  ];
+
   return (
     <div className="main">
       <div className="side-bar">
-        <Header role="ADMIN" />
-        <Navigation menuItems={adminMenu} />
+        <Header role={localStorage.getItem("role")} />
+        <Navigation menuItems={menu} />
+        <Button variant="contained" onClick={() => localStorage.removeItem("role")} >Logout</Button> 
       </div>
       <div className="pages">
         <Routes>
@@ -52,10 +85,11 @@ function app() {
           <Route path="/admin-home" element={<AdminHome />} />
           <Route path="/staff/panel/evaluate/presentation/:id" element={<EvaluatePresentation/>} />
           <Route path="/staff/panel/presentation/groupList" element={<PresentationGroupList/>} />
-          {user && <Route path="/student/register" element={<StudentSignup />} />}
+          <Route path="/student/register" element={<StudentSignup />}/>
           <Route path="/student/login" element={<StudentLogin/>}/>
           <Route path="/student/register" element={<StudentSignup/>} />
-          <Route path="/student-group/create" element={<CreateGroups/>}/>
+          <Route path="/student/create-group" element={<CreateGroups/>}/>
+          <Route path="/student/topic-registration" element={<TopicRegister/>}/>
         </Routes>
       </div>
     </div>
