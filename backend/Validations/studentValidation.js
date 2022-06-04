@@ -1,7 +1,7 @@
 import Joi from 'joi'
 import passwordComplexity from 'joi-password-complexity'
 
-const validate = (data) => {
+export const validate = (data) => {
 	const schema = Joi.object({
 		student_id: Joi.string().required().label("Student ID"),
 		name: Joi.string().required().label("Full Name"),
@@ -12,4 +12,10 @@ const validate = (data) => {
 	return schema.validate(data);
 };
 
-export default validate
+export const validateLogin = (data) => {
+	const schema = Joi.object({
+		student_id: Joi.string().required().label("Student ID"),
+		password: Joi.string().required().label("Password"),
+	});
+	return schema.validate(data);
+};

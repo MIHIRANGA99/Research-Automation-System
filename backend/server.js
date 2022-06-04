@@ -7,11 +7,15 @@ import cors from "@koa/cors";
 import Koa from "koa";
 import staffRouter from "./routes/staff.router.js";
 import requestsRouter from "./routes/requests.routes.js";
+import topicRegistration from "./routes/topic-registration.routes.js"
 import evaluateRouter from "./routes/panelMember.router.js";
 import submissionTypeRouter from "./routes/submission-type.routes.js"
 import documentRouter from "./routes/document.routes.js"
 import panelRouter from "./routes/panel.routes.js"
 import studentGroupRouter from "./routes/student-group.routes.js"
+import evaluateDocsRouter from "./routes/evaluate-docs.routes.js"
+import markingSchemeRouter from "./routes/markingScheme.routes.js"
+import projectDocsRouter from "./routes/projectDocs.routes.js"
 
 const app = new Koa();
 
@@ -29,6 +33,10 @@ app.use(documentRouter.routes()).use(documentRouter.allowedMethods());
 app.use(panelRouter.routes()).use(panelRouter.allowedMethods());
 app.use(studentGroupRouter.routes()).use(studentGroupRouter.allowedMethods());
 app.use(requestsRouter.routes()).use(requestsRouter.allowedMethods());
+app.use(topicRegistration.routes()).use(topicRegistration.allowedMethods());
+app.use(evaluateDocsRouter.routes()).use(evaluateDocsRouter.allowedMethods());
+app.use(markingSchemeRouter.routes()).use(markingSchemeRouter.allowedMethods());
+app.use(projectDocsRouter.routes()).use(projectDocsRouter.allowedMethods());
 
 app.listen(PORT, () => {
   console.log("Server Started on port : " + PORT);

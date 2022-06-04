@@ -5,7 +5,7 @@ import {
   updateStudent,
   deleteStudent,
 } from "../api/student.js";
-import validate from "../Validations/studentValidation.js";
+import {validate, validateLogin} from "../Validations/studentValidation.js";
 import Student from "../models/Student.model.js";
 import bcrypt from "bcrypt";
 
@@ -50,6 +50,42 @@ router.post("/register", async (ctx, next) => {
     ctx.body = error.message;
   }
 });
+
+router.post("/login", async (ctx, next) => {
+	try {
+		const { error } = validateLogin(ctx.request.body);
+		if (error){
+            console.log(error);
+            ctx.body = error.message;
+            return
+          }
+
+		const user = await Student.findOne({ student_id: ctx.request.body.student_id });
+		if (!user){
+            ctx.body = "Invalid ID or Password"
+            return
+        }
+
+		const validPassword = await bcrypt.compare(
+			ctx.request.body.password,
+			user.password
+		);
+		if (!validPassword){
+            console.log("Invalid ID or Password");
+            ctx.body = "Invalid ID or Password"
+            return
+        }
+
+		const token = user.generateAuthToken();
+    console.log("logged in successfully");
+		ctx.body = { data: token, message: "logged in successfully" }
+	} catch (error) {
+    console.log(error.message, error)
+		ctx.body = { message: "Internal Server Error" }
+	}
+});
+
+
 
 router.get("/", async (ctx, next) => {
   await getAllStudents()

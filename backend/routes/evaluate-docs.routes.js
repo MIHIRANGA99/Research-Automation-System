@@ -1,19 +1,19 @@
 import Router from "@koa/router";
 import {
-  sendRequests,
-  getRequests,
-  getOneRequest,
-  updateRequest,
-  deleteRequest,
-} from "../api/requests.js";
+  assignMarks,
+  getMarks,
+  getOneMark,
+  updateMarks,
+  deleteMarks,
+} from "../api/evaluateDocs.js";
 
 const router = new Router({
-  prefix: "/requests",
+  prefix: "/Marks",
 });
 
-router.post("/", async (ctx, next) => {
+router.post('/', async (ctx, next) => {
     const data = ctx.request.body
-    await sendRequests(data).then((res) => {
+    await assignMarks(data).then((res) => {
         ctx.body = res
     }).catch((e) => {
         ctx.body = e.message
@@ -21,7 +21,7 @@ router.post("/", async (ctx, next) => {
 });
 
 router.get("/", async (ctx, next) => {
-  await getRequests()
+  await getMarks()
     .then((res) => {
       ctx.body = res;
     })
@@ -31,7 +31,7 @@ router.get("/", async (ctx, next) => {
 });
 
 router.get("/:id", async (ctx, next) => {
-  await getOneRequest(ctx.params.id)
+  await getOneMark(ctx.params.id)
     .then((res) => {
       ctx.body = res;
     })
@@ -41,7 +41,7 @@ router.get("/:id", async (ctx, next) => {
 });
 
 router.patch("/:id", async (ctx, next) => {
-  await updateRequest(ctx.params.id, ctx.request.body)
+  await updateMarks(ctx.params.id, ctx.request.body)
     .then((res) => {
       ctx.body = res;
     })
@@ -51,7 +51,7 @@ router.patch("/:id", async (ctx, next) => {
 });
 
 router.delete("/:id", async (ctx, next) => {
-  await deleteRequest(ctx.params.id)
+  await deleteMarks(ctx.params.id)
     .then((res) => {
       ctx.body = res;
     })

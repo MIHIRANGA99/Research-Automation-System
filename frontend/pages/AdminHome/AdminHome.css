@@ -1,0 +1,46 @@
+.adminHomeMain{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.chartCard{
+    flex: 1;
+    background-color: #533c2c2a;
+    border-radius: 20px;
+    height: max-content;
+}
+
+.chart{
+    padding: 20px;
+}
+
+.numbers{
+    flex: 1;
+}
+
+.stateCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #533c2c2a;
+    height: fit-content;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 32px;
+}
+
+.cardHeading{
+    display: flex;
+    justify-content: center;
+    color: #FFCE97;
+    width: 100%;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.cardNumber{
+    color: white;
+    font-size: 40px;
+}

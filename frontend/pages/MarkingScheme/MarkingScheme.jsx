@@ -1,33 +1,33 @@
 import {
-  Button,
-  CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-  ThemeProvider,
-} from "@mui/material";
+    Button,
+    CircularProgress,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    TextField,
+    ThemeProvider,
+  } from "@mui/material";
 import React, { useState } from "react";
-import { storage } from "../../Firebase/firebaseConfig";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import AddButton from "../../components/Buttons/AddButton";
+import { storage } from "../../Firebase/firebaseConfig";
 import { dialog } from "../../themes/themes";
-import { addDoc } from "../../controllers/documentUploadController";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { addMarkingScheme } from "../../controllers/markingSchemeController";
+import './MarkingScheme.css'
 
-const Documents = () => {
+const MarkingScheme = () => {
   const [popup, setPopup] = useState(false);
 
   const [url, setURL] = useState("");
   const [isProgress, setIsProgress] = useState(false);
   const [file, setFile] = useState({});
-  const [type, setType] = useState("");
   const [docName, setDocName] = useState("");
 
   const uploadDoc = () => {
-    if (!!file.size && type !== "" && docName !== "") {
+    if (!!file.size && docName !== "") {
       console.log(file.name.replace(/\s/g, ""));
-      const storageRef = ref(storage, `files/${file.name.replace(/\s/g, "")}`);
+      const storageRef = ref(storage, `markingSchemes/${file.name.replace(/\s/g, "")}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(
@@ -48,12 +48,11 @@ const Documents = () => {
 
               // save in mongoDB database
               const info = {
-                type: type,
                 name: docName,
                 url: downloadURL,
               };
 
-              addDoc(info)
+              addMarkingScheme(info)
                 .then((res) => {
                   console.log(res.data);
                   setIsProgress(false);
@@ -69,19 +68,17 @@ const Documents = () => {
         }
       );
     } else {
-      console.log('Cannot upload!');
+      console.log(file, docName);
     }
   };
 
   return (
-    <>
-      <div>
-        <AddButton
-          buttonText="Upload new Document"
-          onClick={() => setPopup(true)}
-          variant="contained"
-        />
-      </div>
+    <div className="markingSchemeMain">
+      <AddButton
+        buttonText="Upload new Document"
+        onClick={() => setPopup(true)}
+        variant="contained"
+      />
       {/*Upload Popup*/}
       <ThemeProvider theme={dialog}>
         <Dialog
@@ -92,7 +89,7 @@ const Documents = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle className="dialogTitle" id="alert-dialog-title">
-            {"Create Submission Type"}
+            {"Upload Marking Scheme"}
           </DialogTitle>
           <DialogContent className="popUp">
             <Button fullWidth variant="contained" component="label">
@@ -103,14 +100,6 @@ const Documents = () => {
                 hidden
               />
             </Button>
-            <TextField
-              fullWidth
-              id="type"
-              label="Type"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              variant="outlined"
-            />
             <TextField
               fullWidth
               id="name"
@@ -139,8 +128,8 @@ const Documents = () => {
           </DialogActions>
         </Dialog>
       </ThemeProvider>
-    </>
+    </div>
   );
 };
 
-export default Documents;
+export default MarkingScheme;
