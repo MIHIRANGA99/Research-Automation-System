@@ -18,6 +18,7 @@ import MarkingScheme from "./pages/MarkingScheme/MarkingScheme";
 import "./App.css";
 import AdminHome from "./pages/AdminHome/AdminHome";
 import TopicRegister from "./pages/TopicRegister/topicRegister"
+import SubmitDocument from "./pages/SubmitDocument/SubmitDocument"
 import { Button } from "@mui/material";
 
 function app() {
@@ -115,6 +116,7 @@ function app() {
           <Route path="/student/register" element={<StudentSignup/>} />
           <Route path="/student/create-group" element={<CreateGroups/>}/>
           <Route path="/student/topic-registration" element={<TopicRegister/>}/>
+          <Route path="/student/submit-document" element={<SubmitDocument/>}/>
         </Routes>
       </div>
     </div>
