@@ -8,14 +8,9 @@ import Documents from "./pages/Documents/Documents";
 import StaffRegister from "./components/Staff/StaffRegister";
 import EvaluatePresentation from "./components/Panel/EvaluatePresentation";
 import PresentationGroupList from "./components/Panel/PresentationGroupList";
-// reorder [CONFLICTS]
 import StudentLogin from "./pages/Login/login"
 import StudentSignup from "./pages/Student/registration"
 import CreateGroups from "./pages/StudentGroups/CreateGroup";
-
-function app() {
-  const user = localStorage.getItem("token");
-
 import StudentGroups from "./pages/StudentGroups/StudentGroups";
 import StdGroups from "./pages/StdGroups/StdGroups";
 import Requests from "./pages/Requests/Requests";
@@ -23,9 +18,9 @@ import MarkingScheme from "./pages/MarkingScheme/MarkingScheme";
 import "./App.css";
 import AdminHome from "./pages/AdminHome/AdminHome";
 
-
-
 function app() {
+  const user = localStorage.getItem("token");
+  
   const adminMenu = [
     { name: "Home", link: "/admin-home" },
     { name: "Manage Users", link: "/manage-users" },
@@ -68,4 +63,4 @@ function app() {
   );
 }
 
-export default app;
+export default app
