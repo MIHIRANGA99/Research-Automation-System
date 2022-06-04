@@ -1,10 +1,12 @@
 import {
+  Alert,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   ThemeProvider,
+  Snackbar
 } from "@mui/material";
 import { dialog } from "../../themes/themes";
 import React, { useState } from "react";
@@ -17,6 +19,12 @@ const GroupCard = ({ grpID, grpName, students, panel }) => {
   const [staffData, setStaffData] = useState([]);
   const [popup, setPopup] = useState(false);
   const [allocatedArray, setAllocatedArray] = useState([]);
+
+  const [alert, setAlert] = useState({
+    message: "",
+    type: "",
+    show: false
+  })
 
   const handleInsert = (id) => {
     if (allocatedArray.includes(id)) {
@@ -35,16 +43,18 @@ const GroupCard = ({ grpID, grpName, students, panel }) => {
   };
 
   const registerPanel = (grpID) => {
-      const data = {
-          members: allocatedArray,
-          allocatedGroups: grpID
-      }
-      createPanel(data).then((res) => {
-          console.log(res.data)
-      }).catch(e => {
-          console.log(e.message)
+    const data = {
+      members: allocatedArray,
+      allocatedGroups: grpID,
+    };
+    createPanel(data)
+      .then((res) => {
+        console.log(res.data);
       })
-  }
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
 
   const allocatePanel = (id) => {
     const info = {
@@ -55,12 +65,14 @@ const GroupCard = ({ grpID, grpName, students, panel }) => {
     updateGroup(id, info)
       .then((res) => {
         console.log(res.data);
+        registerPanel(id);
+        setPopup(false);
+        setAlert({message: "Allocated!", type: "success", show: true});
       })
       .catch((e) => {
         console.log(e.message);
+        setAlert({message: "Couldn't Allocate!", type: "error", show: true});
       });
-
-    registerPanel(id)
   };
 
   const handlePop = () => {
@@ -100,6 +112,12 @@ const GroupCard = ({ grpID, grpName, students, panel }) => {
           variant="contained"
           onClick={() => handlePop()}
         />
+        {/* Alert Message */}
+        <Snackbar open={alert.show} autoHideDuration={6000} onClose={() => setAlert({message: "", show: false, type: ""})}>
+          <Alert onClose={() => setAlert({message: "", show: false, type: ""})} severity={alert.type} sx={{ width: "100%" }}>
+            {alert.message}
+          </Alert>
+        </Snackbar>
         {/*Allocate Popup*/}
         <ThemeProvider theme={dialog}>
           <Dialog

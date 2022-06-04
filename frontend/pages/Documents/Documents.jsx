@@ -69,7 +69,7 @@ const Documents = () => {
         }
       );
     } else {
-      console.log("ba", file, type, docName);
+      console.log('Cannot upload!');
     }
   };
 
