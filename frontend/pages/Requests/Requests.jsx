@@ -1,7 +1,7 @@
 import RequestCard from "../../components/Cards/RequestCard";
 import { getRequests } from "../../controllers/requestsController";
 import React, { useEffect, useState } from "react";
-import "./Requests.css";
+import "./manageUsers.css";
 
 const Requests = () => {
   const [reqData, setReqData] = useState([]);

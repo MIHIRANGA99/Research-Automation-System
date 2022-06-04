@@ -4,7 +4,7 @@ import {
   updateGroup,
 } from "../../controllers/studentGroupController";
 import { getStaff } from "../../controllers/userController";
-import "./StdGroups.css";
+import "./StudentGroups.css";
 
 const StudentGroups = () => {
   const [groupData, setGroupData] = useState([]);
