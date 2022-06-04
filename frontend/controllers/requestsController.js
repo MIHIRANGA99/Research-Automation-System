@@ -14,5 +14,5 @@ export const acceptRequest = async (id, data) => {
 };
 
 export const rejectRequest = async (id, data) => {
-  return await axios.patch(`${url}/${id}`, data);
+  return await axios.delete(`${url}/${id}`, data);
 };
