@@ -15,9 +15,9 @@ const Requests = () => {
   return (
     <div className="userList">
       <div className="headings">
-        <label className="heading">Group ID</label>
-        <label className="heading">Members</label>
-        <label className="heading">Document Name</label>
+        <label className="headings1">Group ID</label>
+        <label className="headings1">Members</label>
+        <label className="headings1">Document Name</label>
       </div>
       {userData.map((user, index) => {
         return (

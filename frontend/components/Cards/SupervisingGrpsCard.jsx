@@ -11,7 +11,7 @@ import EvaluateButton from "../Buttons/EvaluateButton";
 function RequestCard({ objID, groupId, members, docName }) {
   const styles = {
     display: "flex",
-    flex: 1,
+    flex: 13,
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
