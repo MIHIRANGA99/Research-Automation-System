@@ -5,8 +5,7 @@
 /* Issue In Here */
 .groupsGrid{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 100%);
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, 32vh);
 }
 
 .groupCard{
@@ -17,8 +16,8 @@
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    width: 250px;
     padding: 12px;
-    width: 20%;
 }
 
 .layout{
@@ -38,23 +37,27 @@
 .staffPopup{
     height: 100%;
     width: 100%;
-    background-color: aqua;
+    display: flex;
+    flex-direction: column;
 }
 
 .staffMemberCard{
+    display: flex;
     background-color: #ffce9750;
-    padding: 10px 12px;
     border-radius: 12px;
     transition-duration: 0.2s;
-    display: flex;
+    margin-bottom: 8px;
+    padding: 8px 0px;
     width: 100%;
 }
 
 .staffMemberCardActive{
-    background-color: #ffce97be;
-    padding: 10px 12px;
-    border-radius: 12px;
     display: flex;
+    color: white;
+    background-color: #4e3314be;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    padding: 8px 0px;
     width: 100%;
 }
 
